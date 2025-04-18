@@ -1,9 +1,0 @@
-# File: d:\Coding\FSE1\project\.gitattributes
-
-/mvnw text eol=lf
-*.cmd text eol=crlf
-*.java text eol=lf
-*.properties text eol=lf
-*.yml text eol=lf
-*.json text eol=lf
-*.md text eol=lf
