@@ -1,47 +1,35 @@
 package com.moviebookingapp.project.controller;
 
+import com.moviebookingapp.project.dto.LoginReq;
 import com.moviebookingapp.project.entity.User;
 import com.moviebookingapp.project.service.UserService;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/users")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         User createdUser = userService.createUser(user);
         return ResponseEntity.ok(createdUser);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable String id) {
-        User user = userService.getUserById(id).orElseThrow(() -> new RuntimeException("User not found"));
-        return ResponseEntity.ok(user);
-    }
-
-    @GetMapping
-    public ResponseEntity<List<User>> getAllUsers() {
-        List<User> users = userService.getAllUsers();
+    @GetMapping("/login")
+    public ResponseEntity<User> getUsers(@RequestBody LoginReq loginReq) {
+        User users = userService.findByUsernameAndPassword(loginReq.getUsername(),loginReq.getPassword());
         return ResponseEntity.ok(users);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable String id, @RequestBody User user) {
-        User updatedUser = userService.updateUser(id, user);
-        return ResponseEntity.ok(updatedUser);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable String id) {
-        userService.deleteUser(id);
-        return ResponseEntity.noContent().build();
+    @GetMapping("/{username}/forgot")
+    public ResponseEntity<User> forgotPassword(@PathVariable String username,
+                                               @RequestHeader(value = "newPassword") String newPassword) {
+        User user = userService.forgotPassword(username,newPassword);
+        return ResponseEntity.ok(user);
     }
 }
