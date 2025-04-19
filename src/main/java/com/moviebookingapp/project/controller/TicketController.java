@@ -13,7 +13,7 @@ import java.util.Optional;
  * REST controller for managing tickets.
  */
 @RestController
-@RequestMapping("/api/tickets")
+@RequestMapping("/tickets")
 public class TicketController {
 
     @Autowired
