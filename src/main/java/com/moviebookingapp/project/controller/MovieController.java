@@ -14,12 +14,6 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
-    @PostMapping("/add")
-    public ResponseEntity<Movie> createMovie(@RequestBody Movie movie) {
-        Movie createdMovie = movieService.createMovie(movie);
-        return ResponseEntity.ok(createdMovie);
-    }
-
     @GetMapping("/movie/search/{movieName}")
     public ResponseEntity<Movie> getMovieById(@PathVariable String movieName) {
         Movie movie = movieService.getMovieByName(movieName);

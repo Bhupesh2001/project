@@ -8,17 +8,12 @@ import com.moviebookingapp.project.entity.Movie;
 import com.moviebookingapp.project.repository.MovieRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class MovieService {
 
     @Autowired
     private MovieRepository movieRepository;
-
-    public Movie createMovie(Movie movie) {
-        return movieRepository.save(movie);
-    }
 
     public List<Movie> getAllMovies() {
         return movieRepository.findAll();
