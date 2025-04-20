@@ -20,7 +20,7 @@ public class UserController {
         return ResponseEntity.ok(createdUser);
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<User> getUsers(@RequestBody LoginReq loginReq) {
         User users = userService.findByUsernameAndPassword(loginReq.getUsername(),loginReq.getPassword());
         return ResponseEntity.ok(users);
