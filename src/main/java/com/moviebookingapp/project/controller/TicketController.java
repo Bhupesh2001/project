@@ -1,10 +1,13 @@
 package com.moviebookingapp.project.controller;
 
+import com.moviebookingapp.project.dto.BookTicketRequest;
 import com.moviebookingapp.project.entity.Ticket;
 import com.moviebookingapp.project.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * REST controller for managing tickets.
@@ -16,8 +19,8 @@ public class TicketController {
     private TicketService ticketService;
 
     @PostMapping("/add")
-    public ResponseEntity<Ticket> bookTicket(@RequestBody Ticket ticket) {
-        Ticket response = ticketService.saveTicket(ticket);
+    public ResponseEntity<List<Ticket>> bookTicket(@RequestBody BookTicketRequest ticketRequest) {
+        List<Ticket> response = ticketService.saveTicket(ticketRequest);
         return ResponseEntity.ok(response);
     }
 

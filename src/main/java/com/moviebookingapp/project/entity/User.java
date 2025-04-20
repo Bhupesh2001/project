@@ -12,13 +12,9 @@ import lombok.Data;
 @Builder
 public class User {
     @Id
-    private String loginId;
+    private String email;
     private String firstName;
     private String lastName;
     private String password;
     private String contactNumber;
-
-    // Add unique index for email
-    @Indexed(unique = true)
-    private String email;
 }

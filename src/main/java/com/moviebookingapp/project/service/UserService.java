@@ -18,7 +18,7 @@ public class UserService {
     private UserRepository userRepository;
 
     public User createUser(User user) {
-        if(userRepository.findById(user.getLoginId()).isPresent())
+        if(userRepository.findById(user.getEmail()).isPresent())
             throw new CustomException("User already exits");
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
