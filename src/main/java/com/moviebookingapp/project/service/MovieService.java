@@ -1,5 +1,6 @@
 package com.moviebookingapp.project.service;
 
+import com.moviebookingapp.project.exception.CustomException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,17 +24,8 @@ public class MovieService {
         return movieRepository.findAll();
     }
 
-    public Optional<Movie> getMovieById(String movieId) {
-        return movieRepository.findById(movieId);
-    }
-
-    public Movie updateMovie(String movieId, Movie movieDetails) {
-        Movie movie = movieRepository.findById(movieId).orElseThrow(() -> new RuntimeException("Movie not found"));
-        movie.setNumberOfTickets(movieDetails.getNumberOfTickets());
-        movie.setSeatNumber(movieDetails.getSeatNumber());
-        movie.setMovieName(movieDetails.getMovieName());
-        movie.setTheatreName(movieDetails.getTheatreName());
-        return movieRepository.save(movie);
+    public Movie getMovieByName(String movieName) {
+        return movieRepository.findById(movieName).orElseThrow(() -> new CustomException("Movie not found"));
     }
 
     public void deleteMovie(String movieId) {

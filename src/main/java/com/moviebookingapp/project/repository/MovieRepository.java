@@ -7,4 +7,5 @@ import com.moviebookingapp.project.entity.Movie;
 
 @Repository
 public interface MovieRepository extends MongoRepository<Movie, String> {
+    public Movie findByMovieName(String movieName);
 }
