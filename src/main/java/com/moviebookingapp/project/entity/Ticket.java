@@ -1,22 +1,22 @@
 package com.moviebookingapp.project.entity;
 
-import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-/**
- * Represents a ticket in the movie booking system.
- * This class is used to store information about a ticket, including its ID, number of tickets booked,
- * seat number(s), and references to the associated movie and theatre names.
- */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Document(collection = "tickets")
 public class Ticket {
+
     @Id
-    private String ticketNumber;
+    private String id; // MongoDB will auto-generate this
     private String bookingDate;
     private String bookingTime;
     private String theatreName;

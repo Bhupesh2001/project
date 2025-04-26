@@ -21,18 +21,21 @@ public class TicketService {
     private TicketRepository ticketRepository;
 
     public List<Ticket> saveTicket(BookTicketRequest ticketRequest) {
-        Ticket ticket = Ticket.builder()
-                .bookingDate(ticketRequest.getBookingDate())
-                .bookingTime(ticketRequest.getBookingTime())
-                .movieName(ticketRequest.getTheatreName())
-                .theatreName(ticketRequest.getTheatreName())
-                .build();
         List<Ticket> response = new ArrayList<>();
+
         for (int i = 0; i < ticketRequest.getTicketCount(); i++) {
+            Ticket ticket = Ticket.builder()
+                    .bookingDate(ticketRequest.getBookingDate())
+                    .bookingTime(ticketRequest.getBookingTime())
+                    .movieName(ticketRequest.getMovieName())
+                    .theatreName(ticketRequest.getTheatreName())
+                    .build();
             response.add(ticketRepository.save(ticket));
         }
+        System.out.println(response);
         return response;
     }
+
 
     public Ticket updateTicketStatus(String movieName,String ticketNumber){
         Optional<Ticket> ticketOptional = ticketRepository.findById(ticketNumber);
@@ -42,5 +45,9 @@ public class TicketService {
 //        TODO
         //        ticket.setMovieName();
         return ticketOptional.get();
+    }
+
+    public List<Ticket> getAllTickets() {
+        return ticketRepository.findAll();
     }
 }

@@ -1,12 +1,9 @@
 package com.moviebookingapp.project.entity;
 
 import lombok.AllArgsConstructor;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.annotation.Id;
-
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @Builder
